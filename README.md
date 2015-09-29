@@ -2,7 +2,7 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Shorthand Font-Size] is a [PostCSS] plugin that lets you define font-size and line-height from inside the font-size property in CSS.
+[Shorthand Font-Size] is a [PostCSS] plugin that extends the `font-size` property so that `line-height` may be set by the second value.
 
 ```css
 /* before */

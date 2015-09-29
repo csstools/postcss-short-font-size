@@ -1,7 +1,7 @@
 {
   "name": "postcss-short-font-size",
-  "version": "1.0.0",
-  "description": "Define font-size and line-height from inside the font-size property in CSS.",
+  "version": "1.0.1",
+  "description": "Extends the font-size property so that line-height may be set by the second value",
   "keywords": [
     "postcss",
     "css",

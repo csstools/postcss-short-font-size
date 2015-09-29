@@ -8,13 +8,12 @@ module.exports = postcss.plugin('postcss-short-font-size', function (opts) {
 		css.walkDecls(prefix + name, function (decl) {
 			if (prefix) decl.prop = name;
 
-			var size = postcss.list.space(decl.value);
+			var value = postcss.list.space(decl.value);
 
-			if (size.length) {
-				decl.value = size[0];
+			if (value[0] === '*') decl.remove();
+			else decl.value = value[0];
 
-				decl.cloneAfter({ prop: 'line-height', value: size.slice(1).join(' ') });
-			}
+			if (value[1] && value[1] !== '*') decl.cloneAfter({ prop: 'line-height', value: value.slice(1).join(' ') });
 		});
 	};
 });
