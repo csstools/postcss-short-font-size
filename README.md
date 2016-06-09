@@ -1,14 +1,16 @@
-# Shorthand Font-Size [![Build Status][ci-img]][ci]
+# Short Font Size
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
+<a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="80" height="80" align="right"></a>
 
-[Shorthand Font-Size] is a [PostCSS] plugin that extends the `font-size` property so that `line-height` may be set by the second value.
+[![NPM Version][npm-img]][npm] [![Build Status][ci-img]][ci]
+
+[Short Font Size] is a [PostCSS] plugin that extends `font-size` to allow a `line-height` value like the `font` shorthand property.
 
 ```css
 /* before */
 
 h1 {
-    font-size: 125% 1.5;
+    font-size: 125%/1.5;
 }
 
 /* after */
@@ -21,9 +23,9 @@ h1 {
 
 ## Usage
 
-Follow these steps to use [Shorthand Font-Size].
+Follow these steps to use [Short Font Size].
 
-Add [Shorthand Font-Size] to your build tool:
+Add [Short Font Size] to your build tool:
 
 ```bash
 npm install postcss-short-font-size --save-dev
@@ -43,7 +45,7 @@ Add [PostCSS] to your build tool:
 npm install postcss --save-dev
 ```
 
-Load [Shorthand Font-Size] as a PostCSS plugin:
+Load [Short Font Size] as a PostCSS plugin:
 
 ```js
 postcss([
@@ -59,7 +61,7 @@ Add [Gulp PostCSS] to your build tool:
 npm install gulp-postcss --save-dev
 ```
 
-Enable [Shorthand Font-Size] within your Gulpfile:
+Enable [Short Font Size] within your Gulpfile:
 
 ```js
 var postcss = require('gulp-postcss');
@@ -83,7 +85,7 @@ Add [Grunt PostCSS] to your build tool:
 npm install grunt-postcss --save-dev
 ```
 
-Enable [Shorthand Font-Size] within your Gruntfile:
+Enable [Short Font Size] within your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-postcss');
@@ -111,9 +113,13 @@ Default: `null`
 
 Specifies a prefix to be surrounded by dashes before the declaration (e.g. `-x-font-size`).
 
-[ci]: https://travis-ci.org/jonathantneal/postcss-short-font-size
-[ci-img]: https://travis-ci.org/jonathantneal/postcss-short-font-size.svg
+[ci]:      https://travis-ci.org/jonathantneal/postcss-short-font-size
+[ci-img]:  https://img.shields.io/travis/jonathantneal/postcss-short-font-size.svg
+[npm]:     https://www.npmjs.com/package/postcss-short-font-size
+[npm-img]: https://img.shields.io/npm/v/postcss-short-font-size.svg
+
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [PostCSS]: https://github.com/postcss/postcss
-[Shorthand Font-Size]: https://github.com/jonathantneal/postcss-short-font-size
+
+[Short Font Size]: https://github.com/jonathantneal/postcss-short-font-size

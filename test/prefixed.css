@@ -1,0 +1,27 @@
+body {
+	-x-font-size: 16px;
+}
+
+body.font-size-important {
+	-x-font-size: 16px !important;
+}
+
+body.both {
+	-x-font-size: 16px/24px;
+}
+
+body.both-spaced {
+	-x-font-size: 16px / 24px;
+}
+
+body.both-font-size-important {
+	-x-font-size: 16px !important / 24px;
+}
+
+body.both-line-height-important {
+	-x-font-size: 16px / 24px !important;
+}
+
+body.both-important {
+	-x-font-size: 16px !important / 24px !important;
+}

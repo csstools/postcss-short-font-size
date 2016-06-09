@@ -1,19 +1,36 @@
 var postcss = require('postcss');
 
+var importantMatch = /\s*!important$/;
+
 module.exports = postcss.plugin('postcss-short-font-size', function (opts) {
 	var prefix = opts && opts.prefix ? '-' + opts.prefix + '-' : '';
-	var name   = 'font-size';
 
 	return function (css) {
-		css.walkDecls(prefix + name, function (decl) {
-			if (prefix) decl.prop = name;
+		css.walkDecls(prefix + 'font-size', function (decl) {
+			if (prefix) {
+				decl.prop = 'font-size';
+			}
 
-			var value = postcss.list.space(decl.value);
+			var declValues = postcss.list.split(decl.value, '/');
 
-			if (value[0] === '*') decl.remove();
-			else decl.value = value[0];
+			if (declValues.length > 1) {
+				var fontSize = declValues[0];
 
-			if (value[1] && value[1] !== '*') decl.cloneAfter({ prop: 'line-height', value: value.slice(1).join(' ') });
+				var lineHeight = declValues[1];
+
+				decl.cloneAfter({
+					prop: 'line-height',
+					value: lineHeight
+				});
+
+				decl.important = importantMatch.test(fontSize);
+
+				if (decl.important) {
+					fontSize = fontSize.replace(importantMatch, '');
+				}
+
+				decl.value = fontSize;
+			}
 		});
 	};
 });
