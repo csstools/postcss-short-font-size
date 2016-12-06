@@ -1,8 +1,0 @@
-/node_modules
-/test
-/.gitignore
-/.editorconfig
-/.eslintrc
-/.jscsrc
-/.travis.yml
-/test.js

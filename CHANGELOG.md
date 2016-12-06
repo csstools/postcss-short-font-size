@@ -1,14 +1,21 @@
-## 2.0.0 (2016-06-09)
+# Changes to Font Size Shorthand
 
-Added: Support for `!important` on either the font size or line height.
-Changed: Splits on a forward-slash (`/`) instead of a space (` `).
-Updated: Tests
+### 2.0.0 (December 6, 2016)
 
-## 1.0.1 (2015-09-29)
+- Added: Define `skip` token
+- Updated: boilerplate conventions (Node v6.9.1 LTS)
 
-Updated: Value parsing
-Updated: Plugin description
+### 2.0.0 (June 9, 2016)
 
-## 1.0.0 (2015-09-21)
+- Added: Support for `!important` on either the font size or line height.
+- Changed: Splits on a forward-slash (`/`) instead of a space (` `).
+- Updated: Tests
 
-Added: Initial version
+### 1.0.1 (September 29, 2015)
+
+- Updated: Value parsing
+- Updated: Plugin description
+
+### 1.0.0 (September 21, 2015)
+
+- Added: Initial version

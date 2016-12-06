@@ -1,7 +1,49 @@
 {
   "name": "postcss-short-font-size",
-  "version": "2.0.0",
-  "description": "Extends font-size to allow a line-height value",
+  "version": "3.0.0",
+  "description": "Define line-height within the font-size property in CSS",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "jonathantneal/postcss-short-font-size",
+  "homepage": "https://github.com/jonathantneal/postcss-short-font-size#readme",
+  "bugs": "https://github.com/jonathantneal/postcss-short-font-size/issues",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "echint && eslint index.js && jscs index.js",
+    "prepublish": "npm test",
+    "tape": "postcss-tape",
+    "test": "npm run lint && postcss-tape"
+  },
+  "engines": {
+    "node": ">=6.9.1"
+  },
+  "dependencies": {
+    "postcss": "^5.2.6"
+  },
+  "devDependencies": {
+    "echint": "^2.1.0",
+    "echint-config-dev": "1.0.0",
+    "eslint": "^3.11.1",
+    "eslint-config-dev": "1.0.0",
+    "jscs": "^3.0.7",
+    "jscs-config-dev": "1.0.1",
+    "postcss-tape": "1.0.1"
+  },
+  "echint": {
+    "extends": "dev"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "jscsConfig": {
+    "preset": "dev"
+  },
   "keywords": [
     "postcss",
     "css",
@@ -14,35 +56,5 @@
     "property",
     "properties",
     "values"
-  ],
-  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com/)",
-  "license": "CC0-1.0",
-  "repository": "jonathantneal/postcss-short-font-size.git",
-  "homepage": "https://github.com/jonathantneal/postcss-short-font-size#readme",
-  "bugs": "https://github.com/jonathantneal/postcss-short-font-size/issues",
-  "dependencies": {
-    "postcss": "^5.0.4"
-  },
-  "devDependencies": {
-    "ava": "^0.15.2",
-    "eslint": "^2.11.1",
-    "eslint-config-10up": "github:jonathantneal/eslint-config-10up",
-    "fs-promise": "^0.5.0",
-    "jscs": "^3.0.4",
-    "jscs-config-10up": "github:jonathantneal/jscs-config-10up"
-  },
-  "scripts": {
-    "lint": "eslint . && jscs .",
-    "tape": "ava",
-    "test": "npm run lint && npm run tape"
-  },
-  "engines": {
-    "node": ">=0.12.0"
-  },
-  "jscsConfig": {
-    "preset": "10up"
-  },
-  "eslintConfig": {
-    "extends": "10up"
-  }
+  ]
 }

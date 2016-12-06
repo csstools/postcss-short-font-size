@@ -1,31 +1,47 @@
-# Short Font Size
+# Font Size Shorthand <a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right"></a>
 
-<a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="80" height="80" align="right"></a>
+[![NPM Version][npm-img]][npm-url]
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-image]][lic-url]
+[![Changelog][log-image]][log-url]
+[![Gitter Chat][git-image]][git-url]
 
-[![NPM Version][npm-img]][npm] [![Build Status][ci-img]][ci]
-
-[Short Font Size] is a [PostCSS] plugin that extends `font-size` to allow a `line-height` value like the `font` shorthand property.
+[Font Size Shorthand] lets you define `line-height` within the `font-size` property in CSS.
 
 ```css
 /* before */
 
-h1 {
+.example-1 {
     font-size: 125%/1.5;
 }
 
 /* after */
 
-h1 {
+.example-1 {
     font-size: 125%;
     line-height: 1.5;
 }
 ```
 
+## Options
+
+#### `prefix`
+
+Type: `String`  
+Default: `""`
+
+Adds an optional prefix to the `font-size` property (e.g. `"x"` for `-x-font-size`). Wrapping dashes (`-`) are automatically applied.
+
+#### `skip`
+
+Type: `String`  
+Default: `"*"`
+
+Specifies the skip token used to ignore a length.
+
 ## Usage
 
-Follow these steps to use [Short Font Size].
-
-Add [Short Font Size] to your build tool:
+Add [Font Size Shorthand] to your build tool:
 
 ```bash
 npm install postcss-short-font-size --save-dev
@@ -34,7 +50,7 @@ npm install postcss-short-font-size --save-dev
 #### Node
 
 ```js
-require('postcss-short-font-size')({ /* options */ }).process(YOUR_CSS);
+require('postcss-short-font-size').process(YOUR_CSS, { /* options */ });
 ```
 
 #### PostCSS
@@ -45,12 +61,12 @@ Add [PostCSS] to your build tool:
 npm install postcss --save-dev
 ```
 
-Load [Short Font Size] as a PostCSS plugin:
+Load [Font Size Shorthand] as a PostCSS plugin:
 
 ```js
 postcss([
-    require('postcss-short-font-size')({ /* options */ })
-]);
+	require('postcss-short-font-size')({ /* options */ })
+]).process(YOUR_CSS, /* options */);
 ```
 
 #### Gulp
@@ -61,19 +77,19 @@ Add [Gulp PostCSS] to your build tool:
 npm install gulp-postcss --save-dev
 ```
 
-Enable [Short Font Size] within your Gulpfile:
+Enable [Font Size Shorthand] within your Gulpfile:
 
 ```js
 var postcss = require('gulp-postcss');
 
 gulp.task('css', function () {
-    return gulp.src('./css/src/*.css').pipe(
-        postcss([
-            require('postcss-short-font-size')({ /* options */ })
-        ])
-    ).pipe(
-        gulp.dest('./css')
-    );
+	return gulp.src('./src/*.css').pipe(
+		postcss([
+			require('postcss-short-font-size')({ /* options */ })
+		])
+	).pipe(
+		gulp.dest('.')
+	);
 });
 ```
 
@@ -85,41 +101,37 @@ Add [Grunt PostCSS] to your build tool:
 npm install grunt-postcss --save-dev
 ```
 
-Enable [Short Font Size] within your Gruntfile:
+Enable [Font Size Shorthand] within your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-    postcss: {
-        options: {
-            processors: [
-                require('postcss-short-font-size')({ /* options */ })
-            ]
-        },
-        dist: {
-            src: 'css/*.css'
-        }
-    }
+	postcss: {
+		options: {
+			use: [
+				require('postcss-short-font-size')({ /* options */ })
+			]
+		},
+		dist: {
+			src: '*.css'
+		}
+	}
 });
 ```
 
-## Options
-
-#### `prefix`
-
-Type: `String`  
-Default: `null`
-
-Specifies a prefix to be surrounded by dashes before the declaration (e.g. `-x-font-size`).
-
-[ci]:      https://travis-ci.org/jonathantneal/postcss-short-font-size
-[ci-img]:  https://img.shields.io/travis/jonathantneal/postcss-short-font-size.svg
-[npm]:     https://www.npmjs.com/package/postcss-short-font-size
+[npm-url]: https://www.npmjs.com/package/postcss-short-font-size
 [npm-img]: https://img.shields.io/npm/v/postcss-short-font-size.svg
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-short-font-size
+[cli-img]: https://img.shields.io/travis/jonathantneal/postcss-short-font-size.svg
+[lic-url]: LICENSE.md
+[lic-image]: https://img.shields.io/npm/l/postcss-short-font-size.svg
+[log-url]: CHANGELOG.md
+[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[git-url]: https://gitter.im/postcss/postcss
+[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
 
+[Font Size Shorthand]: https://github.com/jonathantneal/postcss-short-font-size
+[PostCSS]: https://github.com/postcss/postcss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
-[PostCSS]: https://github.com/postcss/postcss
-
-[Short Font Size]: https://github.com/jonathantneal/postcss-short-font-size
