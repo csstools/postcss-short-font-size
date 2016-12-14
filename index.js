@@ -7,10 +7,10 @@ const importantMatch = /\s*!important$/;
 // plugin
 module.exports = postcss.plugin('postcss-short-font-size', ({
 	prefix = '',
-	skip   = '*'
-}) => {
+	skip = '*'
+} = {}) => {
 	// dashed prefix
-	const dashedPrefix = prefix ? '-' + prefix + '-' : '';
+	const dashedPrefix = prefix ? `-${ prefix }-` : '';
 
 	// property pattern
 	const propertyMatch = new RegExp(`^${ dashedPrefix }(font-size)$`);
@@ -59,3 +59,10 @@ module.exports = postcss.plugin('postcss-short-font-size', ({
 		});
 	};
 });
+
+// override plugin#process
+module.exports.process = function (cssString, pluginOptions, processOptions) {
+	return postcss([
+		0 in arguments ? module.exports(pluginOptions) : module.exports()
+	]).process(cssString, processOptions);
+};
