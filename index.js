@@ -5,10 +5,11 @@ const postcss = require('postcss');
 const importantMatch = /\s*!important$/;
 
 // plugin
-module.exports = postcss.plugin('postcss-short-font-size', ({
-	prefix = '',
-	skip = '*'
-} = {}) => {
+module.exports = postcss.plugin('postcss-short-font-size', (opts) => {
+	// options
+	const prefix = opts && 'prefix' in opts ? opts.prefix : '';
+	const skip = opts && 'skip' in opts ? opts.skip : '*';
+
 	// dashed prefix
 	const dashedPrefix = prefix ? `-${ prefix }-` : '';
 
@@ -59,10 +60,3 @@ module.exports = postcss.plugin('postcss-short-font-size', ({
 		});
 	};
 });
-
-// override plugin#process
-module.exports.process = function (cssString, pluginOptions, processOptions) {
-	return postcss([
-		0 in arguments ? module.exports(pluginOptions) : module.exports()
-	]).process(cssString, processOptions);
-};
