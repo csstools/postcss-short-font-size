@@ -1,60 +1,37 @@
-// tooling
-const postcss = require('postcss');
+import postcss from 'postcss';
 
 // !important keyword pattern
 const importantMatch = /\s*!important$/;
 
-// plugin
-module.exports = postcss.plugin('postcss-short-font-size', (opts) => {
-	// options
-	const prefix = opts && 'prefix' in opts ? opts.prefix : '';
-	const skip = opts && 'skip' in opts ? opts.skip : '*';
+export default postcss.plugin('postcss-short-font-size', opts => {
+	const prefix = 'prefix' in Object(opts) ? `-${opts.prefix}-` : '';
+	const skip = 'skip' in Object(opts) ? String(opts.skip) : '*';
 
-	// dashed prefix
-	const dashedPrefix = prefix ? `-${ prefix }-` : '';
+	const fontSizePropertyRegExp = new RegExp(`^${prefix}(font-size)$`);
 
-	// property pattern
-	const propertyMatch = new RegExp(`^${ dashedPrefix }(font-size)$`);
+	return root => {
+		// for each font-size declaration
+		root.walkDecls(fontSizePropertyRegExp, decl => {
+			// conditionally unprefix the font-size property
+			decl.prop = decl.prop.replace(fontSizePropertyRegExp, '$1');
 
-	return (css) => {
-		// walk each matching declaration
-		css.walkDecls(propertyMatch, (decl) => {
-			// unprefixed property
-			const property = decl.prop.match(propertyMatch)[1];
+			// slash-separated values (font-size, line-height)
+			const [fontSize, lineHeight] = postcss.list.split(decl.value, '/');
 
-			// if a prefix is in use
-			if (prefix) {
-				// remove it from the property
-				decl.prop = property;
-			}
+			// whether the font-size is !important
+			decl.important = importantMatch.test(fontSize);
 
-			// space-separated values (font-size, line-height)
-			const values = postcss.list.split(decl.value, '/');
-
-			// if there are multiple values
-			if (values.length > 1) {
-				// if the line-height value is not a skip token
-				if (values[1] !== skip) {
-					// create a new declaration for the line-height
-					decl.cloneAfter({
-						prop: 'line-height',
-						value: values.slice(1).join(' ')
-					});
+			if (lineHeight) {
+				// conditionally prepend the line-height declaration
+				if (lineHeight !== skip) {
+					decl.cloneBefore({ prop: 'line-height', value: lineHeight });
 				}
 
-				// whether the font-size is !important
-				decl.important = importantMatch.test(values[0]);
-
-				// font-size value sans !important
-				const fontSize = decl.important ? values[0].replace(importantMatch, '') : values[0];
-
-				// if the font-size value is a skip token
-				if (fontSize === skip) {
-					// remove the original font-size declaration
-					decl.remove();
+				// conditionally remove the color declaration
+				if (fontSize !== skip) {
+					decl.value = fontSize.replace(importantMatch, '');
 				} else {
-					// otherwise, update the font-size value
-					decl.value = fontSize;
+					decl.remove();
 				}
 			}
 		});

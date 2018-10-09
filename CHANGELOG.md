@@ -1,4 +1,9 @@
-# Changes to Font Size Shorthand
+# Changes to PostCSS Short Font Size
+
+### 5.0.0 (October 9, 2018)
+
+- Updated: Supports Node 6+ (major)
+- Updated: PostCSS 7.0.5 (major)
 
 ### 4.0.0 (May 25, 2017)
 
