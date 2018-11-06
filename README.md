@@ -89,7 +89,7 @@ postcssShortFontSize({ skip: '-' });
 
 ```pcss
 body {
-  color: -/125%;
+  font-size: -/125%;
 }
 
 /* becomes */

@@ -27,7 +27,7 @@ export default postcss.plugin('postcss-short-font-size', opts => {
 					decl.cloneBefore({ prop: 'line-height', value: lineHeight });
 				}
 
-				// conditionally remove the color declaration
+				// conditionally remove the font-size declaration
 				if (fontSize !== skip) {
 					decl.value = fontSize.replace(importantMatch, '');
 				} else {
